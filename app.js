@@ -6,13 +6,13 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-app.get('/' function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile('document.html');
 });
 
 
 
 
-app.listen(3000, fuction() {
+app.listen(3000, function() {
   console.log('app listening on port 3000');
 });

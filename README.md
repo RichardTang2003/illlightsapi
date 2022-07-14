@@ -2,4 +2,7 @@
 
 [api.illlights.com](https://api.illlights.com)
 
-目前还没有东西
+
+## Saying API
+
+[api.illlights.com/saying](https://api.illlights.com/saying)

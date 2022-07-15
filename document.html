@@ -7,6 +7,8 @@
     <!-- bootstrap -->
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="css\style.css">
   </head>
 
 
@@ -14,6 +16,7 @@
     <h1>illlights.API</h1>
     <div class="mt-5">
       <h2>概述</h2>
+      <hr>
       <h3>调用限制</h3>
       <p>
         由于服务器并发能力差，限制单ip每分钟60次调用，超过限制次数封锁600秒。
@@ -23,20 +26,25 @@
 
     <div class="mt-5">
       <h2>API</h2>
+      <hr>
       <h3>Saying</h3>
+      <p>简介：这是一个我摘抄句子的数据库，API随机返回一条摘抄。</p><br>
+      <p>调用：get api.illlights.com/saying</p><br>
+      <p>路径：仅调用英文句子 api.illlights.com/saying/en</p>
+      <p>　　　仅调用中文句子 api.illlights.com/saying/zh</p><br>
       <p>
-        简介：这是一个我本人摘抄的句子数据库，API随机返回一条摘抄。
+        返回：JSON格式。例如[{"_id":1, "content":"我只能选择天空，决不跪在地上，以显出刽子手们的高大，好阻挡自由的风。", "type":"Poetry", "author":"北岛", "from":"宣告"}]
       </p>
       <p>
-        调用：get api.illlights.com/saying
-      </p>
-      <p>
-        暂时没有写路径和配置，待更新。
-      </p>
-      <p>
-        返回：JSON格式。例如[{"_id":1, "content":"我只能选择天空，决不跪在地上，以显出刽子手们的高大，好阻挡自由的风。", "type":"Poetry", "author":"北岛", "from":"宣告"}]，content为内容，type为来源文本类型，author作者，from为来源文本标题。部分数据可能缺少type和from项。
+        　　　content为内容，type为来源文本类型，author作者，from为来源文本标题。部分数据可能缺少author项,英文内容含有"language": "en"，中文内容无此项。
       </p>
 
     </div>
   </body>
+
+  <footer>
+    <span> for Freedom && with ❤️ </span><br />
+    <span>copyright© 2022 illlights</span>
+
+  </footer>
 </html>

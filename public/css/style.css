@@ -1,0 +1,15 @@
+body {
+  padding: 2rem 3rem 0 3rem;
+}
+
+footer {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+hr {
+  width: 45%;
+  border: 0;
+  padding: 3px;
+  background: repeating-linear-gradient(135deg, #000 0px, #000 1px, transparent 1px, transparent 6px);
+}

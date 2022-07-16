@@ -2,11 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
 const mongoose = require('mongoose');
+const ejs = require('ejs');
 
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 // Connect DB
 
@@ -40,7 +42,7 @@ app.get('/saying/:language', function(req, res) {
     author: req.query.author,
     from: req.query.from
   };
-
+  
   if (params.language === 'zh') {
     Saying.aggregate([ {$match: {language: {$exists: 0}}}, { $sample: { size: 1 } } ]).exec(function(err, result) {
       if (err){
@@ -70,7 +72,22 @@ app.get('/saying/:language', function(req, res) {
 
 // Document Page
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/document.html');
+  Saying.aggregate([ { $sample: { size: 1 } } ]).exec(function(err, result) {
+    const sayingsContent = result[0].content;
+    let sayingsAuthor = result[0].author;
+    if (sayingsAuthor == undefined) {
+      sayingsAuthor = 'unkown';
+    }
+
+
+    Saying.countDocuments({}, function (err, sayingsCount) {
+      res.render('document', {
+        sayingsCount: sayingsCount,
+        sayingsContent: sayingsContent,
+        sayingsAuthor: sayingsAuthor
+      });
+    });
+  });
 });
 
 

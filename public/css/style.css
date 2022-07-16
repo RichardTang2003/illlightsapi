@@ -7,9 +7,28 @@ footer {
   margin-top: 5rem;
 }
 
+h2 {
+  margin-bottom: 0;
+}
+
 hr {
   width: 45%;
   border: 0;
   padding: 3px;
   background: repeating-linear-gradient(135deg, #000 0px, #000 1px, transparent 1px, transparent 6px);
+  margin-top: 0.2rem;
+}
+
+.saying-div {
+  background-color: darkgray;
+  width: 50%;
+  padding: 0.3rem 0.5rem 0.3rem 0,5rem;
+}
+.saying-content {
+  color: #fff;
+  margin: 0 5% 0 5%;
+}
+.saying-author {
+  color: #fff;
+  margin-left: 70%;
 }

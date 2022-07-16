@@ -21,28 +21,32 @@
       <p>
         由于服务器并发能力差，限制单ip每分钟60次调用，超过限制次数封锁600秒。
       </p>
-
     </div>
 
     <div class="mt-5">
       <h2>API</h2>
       <hr>
       <h3>Saying</h3>
-      <p>简介：这是一个我摘抄句子的数据库，API随机返回一条摘抄。</p><br>
+      <div class="saying-div">
+        <p class="saying-content"><%= sayingsContent %></p>
+        <p class="saying-author">--- <%= sayingsAuthor %></p>
+      </div>
+      <p>简介：这是一个我摘抄句子的数据库，目前有<%= sayingsCount%>条数据，API随机返回一条摘抄。</p><br>
       <p>调用：get api.illlights.com/saying</p><br>
       <p>路径：仅调用英文句子 api.illlights.com/saying/en</p>
       <p>　　　仅调用中文句子 api.illlights.com/saying/zh</p><br>
       <p>
-        返回：JSON格式。例如[{"_id":1, "content":"我只能选择天空，决不跪在地上，以显出刽子手们的高大，好阻挡自由的风。", "type":"Poetry", "author":"北岛", "from":"宣告"}]
+        返回：JSON格式。例如[{"_id":62d13a0527e31b20e3d0f09d, "content":"我只能选择天空/决不跪在地上/以显出刽子手们的高大/好阻挡自由的风", "type":"Poetry", "author":"北岛", "from":"宣告", "language":"zh"}]
       </p>
       <p>
-        　　　content为内容，type为来源文本类型，author作者，from为来源文本标题。部分数据可能缺少author项,英文内容含有"language": "en"，中文内容无此项。
+        　　　content为内容，type为来源文本类型，author作者，from为来源文本标题。部分数据可能缺少author项。
       </p>
 
     </div>
   </body>
 
   <footer>
+    <hr>
     <span> for Freedom && with ❤️ </span><br />
     <span>copyright© 2022 illlights</span>
 

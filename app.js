@@ -43,29 +43,18 @@ app.get('/saying/:language', function(req, res) {
     from: req.query.from
   };
   
-  if (params.language === 'zh') {
-    Saying.aggregate([ {$match: {language: {$exists: 0}}}, { $sample: { size: 1 } } ]).exec(function(err, result) {
-      if (err){
-        console.log(err);
-        res.send('内部错误，请重试或联系管理员');
-      } else{
-        if (JSON.stringify(result) == "[]") {
-          res.send('查询无结果');
-        } else { res.send(result); }
-      }
-    });
-  } else {
-    Saying.aggregate([ {$match: {language: params.language}}, { $sample: { size: 1 } } ]).exec(function(err, result) {
-      if (err){
-        console.log(err);
-        res.send('内部错误，请重试或联系管理员');
-      } else{
-        if (JSON.stringify(result) == "[]") {
-          res.send('查询无结果');
-        } else { res.send(result); }
-      }
-    });
-  }
+
+  Saying.aggregate([ {$match: {language: params.language}}, { $sample: { size: 1 } } ]).exec(function(err, result) {
+    if (err){
+      console.log(err);
+      res.send('内部错误，请重试或联系管理员');
+    } else{
+      if (JSON.stringify(result) == "[]") {
+        res.send('查询无结果');
+      } else { res.send(result); }
+    }
+  });
+  
 });
 
 

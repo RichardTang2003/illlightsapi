@@ -19,16 +19,19 @@ hr {
   margin-top: 0.2rem;
 }
 
+footer hr {
+  margin: 0 auto 0.5rem auto;
+}
+
 .saying-div {
-  background-color: darkgray;
-  width: 50%;
-  padding: 0.3rem 0.5rem 0.3rem 0,5rem;
+  border: 1px solid;
+  width: 40%;
+  padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+  margin-bottom: 1rem;
 }
 .saying-content {
-  color: #fff;
   margin: 0 5% 0 5%;
 }
 .saying-author {
-  color: #fff;
   margin-left: 70%;
 }

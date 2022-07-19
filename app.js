@@ -12,7 +12,6 @@ app.set('view engine', 'ejs');
 
 // Connect DB
 
-
 // Random Saying Page
 const sayingSchema = new mongoose.Schema({
   _id: Number,
@@ -43,7 +42,6 @@ app.get('/saying/:language', function(req, res) {
     from: req.query.from
   };
   
-
   Saying.aggregate([ {$match: {language: params.language}}, { $sample: { size: 1 } } ]).exec(function(err, result) {
     if (err){
       console.log(err);
@@ -57,7 +55,51 @@ app.get('/saying/:language', function(req, res) {
   
 });
 
+//Words Page
+const wordSchema =new mongoose.Schema({
+  content: String
+});
+const Word = mongoose.model('word', wordSchema);
 
+app.get('/words', function(req, res) {
+  Word.aggregate([ { $sample: { size: 3 } } ]).exec(function(err, result) {
+    if (err){
+      console.log(err);
+      res.send('内部错误，请重试或联系管理员');
+    } else{
+      res.render('word', {
+        word1: result[0].content,
+        word2: result[1].content,
+        word3: result[2].content
+      });
+    }
+  });
+});
+
+app.post('/words/add', function(req, res) {
+  if (req.body.addpasswd == 'qq2030807246'){
+    const newWord = new Word({
+      content: req.body.addword
+    });
+    newWord.save();
+    res.redirect('/words');
+  } else {
+    res.send('密码错误');
+  }
+});
+
+app.post('/words/remove', function(req, res) {
+  if (req.body.removepasswd == 'qq2030807246'){
+    Word.deleteMany({content: req.body.removeword}, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    res.redirect('/words');
+  } else {
+    res.send('密码错误');
+  }
+});
 
 // Document Page
 app.get('/', function(req, res) {

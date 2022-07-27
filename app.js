@@ -22,13 +22,17 @@ const sayingSchema = new mongoose.Schema({
 });
 const Saying = mongoose.model("saying", sayingSchema);
 
-app.get('/saying', function(req, res){
+app.get('/saying', function(req, res) {
   Saying.aggregate([ { $sample: { size: 1 } } ]).exec(function(err, result) {
     if (err){
       console.log(err);
       res.send('内部错误，请重试或联系管理员');
     } else{
-      res.send(result);
+      if (req.query.select == 'content') {
+        res.send(result[0].content)
+      } else {
+        res.send(result);
+      }
     }
   });
 });
@@ -49,7 +53,13 @@ app.get('/saying/:language', function(req, res) {
     } else{
       if (JSON.stringify(result) == "[]") {
         res.send('查询无结果');
-      } else { res.send(result); }
+      } else { 
+        if (req.query.select == 'content') {
+          res.send(result[0].content)
+        } else {
+          res.send(result);
+        }
+      }
     }
   });
   
